@@ -3,36 +3,240 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f8f7">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
   <meta name="description" content="DHS Interactive builds mobile applications, games, and useful digital products.">
   <title>DHS Interactive — Thoughtful digital products</title>
-  <link rel="stylesheet" href="assets/site.css">
-  <script src="assets/site.js" defer></script>
+  <script>
+    (() => {
+      try {
+        const theme = localStorage.getItem("dhs-theme");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {}
+    })();
+  </script>
+  <link rel="preload" href="/assets/fonts/inter/inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="./" aria-label="DHS Interactive home"><span class="brand-mark">D</span><span>DHS <b>Interactive</b></span></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
-    <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation"><a href="./" aria-current="page">Home</a><a href="apps/">Apps</a><a class="nav-cta" href="apps/flooth/">Explore Flooth <span aria-hidden="true">↗</span></a></nav>
-  </div></header>
-  <main id="main">
-    <section class="hero container">
-      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> Independent digital studio</p>
-        <h1>Useful ideas,<br><span>made for real life.</span></h1>
-        <p class="lead">DHS Interactive creates mobile applications, games, and digital products designed to make everyday moments a little simpler and more enjoyable.</p>
-        <div class="button-row"><a class="button button-primary" href="apps/">Explore our apps <span aria-hidden="true">→</span></a><a class="text-link" href="apps/flooth/">Meet Flooth <span aria-hidden="true">↗</span></a></div>
-        <div class="hero-note"><span class="note-icon">✳</span><span>Independent by design.<br><b>Thoughtful in every detail.</b></span></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="DHS Interactive home">
+        <img class="brand-symbol" src="/assets/brand/connected-fold.svg" alt="" width="32" height="32">
+        <span class="brand-wordmark"><strong>DHS</strong><small>INTERACTIVE</small></span>
+      </a>
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/apps/">Apps</a>
+        <a href="/#about">About</a>
+        <a href="mailto:dhs.interactive@gmail.com">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Color theme: Follow system. Activate to switch to Light." title="Color theme: Follow system">
+          <span data-theme-icon aria-hidden="true">◐</span>
+          <span class="visually-hidden" data-theme-status>Color theme: Follow system. Activate to switch to Light.</span>
+        </button>
+        <a class="button button-primary header-cta" href="/apps/flooth/">Explore Flooth<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation" data-menu-toggle>
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <div class="hero-art" aria-label="Abstract illustration of a mobile app interface" role="img">
-        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✦</div>
-        <div class="phone"><div class="phone-notch"></div><div class="phone-top"><span>9:41</span><span>•••</span></div><div class="phone-content"><div class="phone-greeting">Your money,<br><b>in perspective.</b></div><div class="balance-label">TOTAL BALANCE</div><div class="balance">$4,280<span>.50</span></div><div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="phone-rows"><span class="row-icon mint">↗</span><span>Monthly budget</span><b>On track</b></div><div class="phone-rows"><span class="row-icon peach">＋</span><span>Recent activity</span><b>View</b></div></div></div>
-        <div class="float-card"><span class="float-icon">↗</span><span><small>Made for everyday</small><b>Little things add up.</b></span></div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/apps/">Apps</a>
+        <a href="/#about">About</a>
+        <a href="mailto:dhs.interactive@gmail.com">Contact</a>
+        <a class="mobile-nav-cta" href="/apps/flooth/">Explore Flooth<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="home-page">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <p class="home-eyebrow">Independent digital studio</p>
+          <h1 id="home-title">Useful ideas,<br><span>made for real life.</span></h1>
+          <p class="home-lead">DHS Interactive creates mobile applications, games, and digital products designed to make everyday moments a little simpler and more enjoyable.</p>
+          <div class="home-actions">
+            <a class="button button-primary" href="/apps/">Explore our apps<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+            <a class="button button-secondary" href="/apps/flooth/">Meet Flooth<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+          </div>
+          <p class="hero-signoff"><span class="signoff-mark" aria-hidden="true">✳</span><span>Independent by design.<br><strong>Thoughtful in every detail.</strong></span></p>
+        </div>
+
+        <div class="home-hero-art" role="img" aria-label="Illustrative Flooth finance interface with sample data beside a Small Works game concept preview.">
+          <div class="finance-preview">
+            <div class="preview-brand"><strong>flooth</strong><span>Overview · Illustrative sample data</span></div>
+            <div class="preview-balance">
+              <span>This month · sample</span>
+              <strong>$2,480.00</strong>
+              <small>Available across 2 wallets</small>
+            </div>
+            <div class="preview-totals"><span>Income<strong>$3,200</strong></span><span>Expenses<strong>$720</strong></span></div>
+            <div class="preview-chart">
+              <strong>Weekly spending</strong>
+              <div class="chart-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <span>Mon <span>Tue</span> Wed <span>Thu</span> Fri <span>Sat</span> Sun</span>
+            </div>
+            <div class="preview-activity"><strong>Recent activity</strong><span>Groceries <b>−$84.00</b></span><span>Transport <b>−$32.00</b></span><span>Income received <b>+$1,600</b></span></div>
+          </div>
+          <div class="game-preview">
+            <div class="game-preview-top"><strong>● 240 / Little neighborhood</strong><img src="/assets/icons/pause.svg" alt="" width="16" height="16"></div>
+            <div class="game-world" aria-hidden="true">
+              <div class="little-building"><i></i><span></span></div>
+              <div class="little-building blue-building"><i></i><span></span></div>
+              <div class="little-building"><i></i><span></span></div>
+            </div>
+            <div class="game-action">Build your next little place<img src="/assets/icons/plus.svg" alt="" width="16" height="16"></div>
+          </div>
+          <div class="preview-status"><img src="/assets/icons/status-indicator.svg" alt="" width="6" height="6">Illustrative product concepts</div>
+        </div>
+      </div>
+      <div class="container home-hero-foot">
+        <span>Thoughtfully made. Simply useful.</span>
+        <span>DHS Interactive · Independent ideas</span>
       </div>
     </section>
-    <section class="principles"><div class="container principle-grid"><div><span class="principle-number">01</span><h2>Useful first</h2><p>Products built around clear, everyday needs.</p></div><div><span class="principle-number">02</span><h2>Made with care</h2><p>Considered details, simple experiences.</p></div><div><span class="principle-number">03</span><h2>Always evolving</h2><p>A growing collection of ideas and tools.</p></div></div></section>
-    <section class="featured container"><div class="section-heading"><div><p class="eyebrow">A product from DHS Interactive</p><h2>Meet <span>Flooth.</span></h2></div><a class="text-link" href="apps/">View all apps <span aria-hidden="true">→</span></a></div><div class="feature-card"><div class="feature-copy"><span class="product-label"><span class="flooth-mark">f</span> Personal finance</span><h3>A clearer view<br>of your money.</h3><p>Keep wallets, budgets, and everyday spending in one calm, considered place. Flooth helps you see the bigger picture at your own pace.</p><a class="button button-light" href="apps/flooth/">Discover Flooth <span aria-hidden="true">→</span></a></div><div class="feature-visual"><div class="coin coin-one">$</div><div class="coin coin-two">↗</div><div class="feature-stat"><span>THIS MONTH</span><strong>Looking good.</strong><div class="stat-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="feature-caption">Your finances,<br>at a glance.</div></div></div></section>
-    <section class="closing container"><div class="closing-inner"><div><p class="eyebrow">Keep in touch</p><h2>Curious what<br>we’re making?</h2></div><div><p>Explore the growing collection of products from DHS Interactive.</p><a class="button button-primary" href="apps/">Browse the apps <span aria-hidden="true">→</span></a></div><span class="closing-star" aria-hidden="true">✳</span></div></section>
+
+    <section class="build-section" aria-labelledby="build-title">
+      <div class="container">
+        <p class="home-eyebrow">What we do</p>
+        <h2 class="home-section-title" id="build-title">A growing collection of useful ideas.</h2>
+        <div class="build-grid">
+          <article class="build-item">
+            <span class="item-index">01 / PRODUCT FOCUS</span>
+            <h3>Mobile applications</h3>
+            <p>Products built around clear, everyday needs.</p>
+          </article>
+          <article class="build-item">
+            <span class="item-index">02 / PRODUCT FOCUS</span>
+            <h3>Games and interactive experiences</h3>
+            <p>Digital experiences designed to make everyday moments simpler and more enjoyable.</p>
+          </article>
+          <article class="build-item">
+            <span class="item-index">03 / DIGITAL PRODUCTS</span>
+            <h3>Useful digital products</h3>
+            <p>A growing collection of apps and digital experiences from DHS Interactive.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section" id="products" aria-labelledby="products-title">
+      <div class="container">
+        <p class="home-eyebrow">The portfolio / in development</p>
+        <div class="section-heading-row">
+          <h2 class="home-section-title" id="products-title">Meet <span>Flooth.</span></h2>
+          <p>Useful ideas, made with care.</p>
+        </div>
+        <div class="featured-grid">
+          <article class="featured-product">
+            <div class="featured-art finance-art" aria-hidden="true">
+              <div class="finance-screen">
+                <span class="screen-label">flooth · illustrative sample data</span>
+                <div class="screen-balance"><small>This month · sample</small><strong>$2,480.00</strong><span>Available across 2 wallets</span></div>
+                <div class="screen-totals"><span>Income<strong>$3,200</strong></span><span>Expenses<strong>$720</strong></span></div>
+                <div class="screen-chart"><span>Weekly spending</span><div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+                <div class="screen-row"><span>Recent activity</span><b>View</b></div>
+              </div>
+            </div>
+            <div class="featured-copy">
+              <span class="product-status"><img src="/assets/icons/status-indicator.svg" alt="" width="6" height="6">Personal finance · Local Mode</span>
+              <h3>Flooth</h3>
+              <p>A thoughtful way to keep up with wallets, budgets, and the everyday flow of your money.</p>
+              <a class="button button-secondary" href="/apps/flooth/">Discover Flooth<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+            </div>
+          </article>
+
+          <article class="featured-product small-works-card" id="small-works">
+            <div class="featured-art works-art" role="img" aria-label="Small Works portfolio preview showing a modular little neighborhood concept.">
+              <div class="works-world">
+                <div class="little-building"><i></i><span></span></div>
+                <div class="little-building blue-building"><i></i><span></span></div>
+                <div class="little-building"><i></i><span></span></div>
+              </div>
+              <span class="works-prompt">Build your next little place</span>
+              <span class="works-label"><img src="/assets/icons/status-indicator.svg" alt="" width="6" height="6">Portfolio preview</span>
+            </div>
+            <div class="featured-copy">
+              <span class="product-status"><img src="/assets/icons/status-indicator.svg" alt="" width="6" height="6">Game concepts · Portfolio preview</span>
+              <h3>Small Works</h3>
+              <p>A portfolio of mobile casual, simulation, management, and incremental game concepts. These are concepts, not a release announcement.</p>
+              <span class="preview-note">No release status or store availability is asserted.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach-section" id="about" aria-labelledby="approach-title">
+      <div class="container approach-grid">
+        <div class="approach-intro">
+          <p class="home-eyebrow">Our approach</p>
+          <h2 class="home-section-title" id="approach-title">Useful ideas, made with care.</h2>
+          <p>Products built around clear, everyday needs. Considered details, simple experiences.</p>
+          <a class="button button-secondary" href="/apps/">Explore our apps<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+        </div>
+        <div class="approach-list">
+          <article class="approach-item"><span>01</span><div><h3>Useful first</h3><p>Products built around clear, everyday needs.</p></div></article>
+          <article class="approach-item"><span>02</span><div><h3>Made with care</h3><p>Considered details, simple experiences.</p></div></article>
+          <article class="approach-item"><span>03</span><div><h3>Always evolving</h3><p>A growing collection of ideas and tools.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision-section" aria-labelledby="vision-title">
+      <div class="container">
+        <p class="home-eyebrow">Our vision / beyond one category</p>
+        <h2 id="vision-title">Useful for life.<br>Enjoyable by nature.<br>Ready for what comes next.</h2>
+        <div class="vision-copy">
+          <p>Our vision is to create useful, intuitive, reliable, and enjoyable digital products that simplify everyday life.</p>
+          <img src="/assets/brand/connected-fold.svg" alt="" width="96" height="96">
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta-section" aria-labelledby="final-cta-title">
+      <div class="container final-cta-inner">
+        <div>
+          <p class="home-eyebrow">Keep in touch</p>
+          <h2 id="final-cta-title">Curious what<br>we’re making?</h2>
+        </div>
+        <div>
+          <p>Explore the growing collection of products from DHS Interactive.</p>
+          <a class="button button-primary" href="/apps/">Browse the apps<img src="/assets/icons/arrow-up-right.svg" alt="" width="16" height="16"></a>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="./"><span class="brand-mark">D</span><span>DHS <b>Interactive</b></span></a><span>Independent ideas. Thoughtfully made.</span><nav aria-label="Footer navigation"><a href="apps/">Apps</a><a href="apps/flooth/privacy/">Flooth Privacy</a><a href="apps/flooth/support/">Support</a></nav><small>© <span data-year>2026</span> DHS Interactive</small></div></footer>
-</body></html>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-company">
+        <a class="brand footer-brand" href="/" aria-label="DHS Interactive home">
+          <img class="brand-symbol" src="/assets/brand/connected-fold.svg" alt="" width="32" height="32">
+          <span class="brand-wordmark"><strong>DHS</strong><small>INTERACTIVE</small></span>
+        </a>
+        <p>Independent ideas. Thoughtfully made.</p>
+      </div>
+      <nav class="footer-group" aria-label="Company">
+        <h2>Company</h2><a href="/">Home</a><a href="/apps/">Apps</a><a href="/#about">About</a><a href="mailto:dhs.interactive@gmail.com">Contact &amp; support</a>
+      </nav>
+      <nav class="footer-group" aria-label="Products">
+        <h2>Products</h2><a href="/apps/flooth/">Flooth</a><a href="/#small-works">Small Works · Portfolio preview</a>
+      </nav>
+      <nav class="footer-group footer-trust" aria-label="Trust and support">
+        <h2>Help &amp; privacy</h2><a href="/apps/flooth/support/">Support</a><a href="/apps/flooth/privacy/">Flooth Privacy Policy</a><a href="/apps/flooth/delete-data/">Data deletion</a>
+      </nav>
+      <p class="footer-note">Portfolio previews are not release announcements. Product illustrations use sample data.</p>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> DHS Interactive</span><span>Independent thinking. Thoughtful software.</span></div>
+    </div>
+  </footer>
+</body>
+</html>
