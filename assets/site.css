@@ -326,7 +326,7 @@ a:hover {
 .home-hero-art {
   position:relative;
   isolation:isolate;
-  min-height:656px;
+  min-height:560px;
   border:1px solid var(--divider);
   border-radius:24px;
   background:linear-gradient(135deg,var(--surface-raised),var(--surface));
@@ -354,10 +354,11 @@ a:hover {
 .finance-preview {
   position:absolute;
   z-index:2;
-  top:62px;
-  left:6%;
-  width:49%;
-  max-width:320px;
+  top:50%;
+  left:50%;
+  width:min(calc(100% - 64px),520px);
+  max-width:520px;
+  transform:translate(-50%,-50%);
   padding:22px;
   background:var(--surface);
   border:1px solid var(--divider);
@@ -456,99 +457,7 @@ a:hover {
 .preview-activity b {
   color:var(--text-primary)
 }
-.game-preview {
-  position:absolute;
-  z-index:1;
-  right:4%;
-  bottom:60px;
-  width:40%;
-  max-width:240px;
-  border:1px solid var(--divider);
-  border-radius:16px;
-  background:var(--surface);
-  box-shadow:0 22px 55px #0b12201c;
-  overflow:hidden;
-  padding:14px
-}
-.game-preview-top,.game-action {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:9px
-}
-.game-preview-top img,.game-action img {
-  width:16px
-}
-.game-world {
-  height:115px;
-  margin:13px -14px 0;
-  background:linear-gradient(180deg,#dff5fa 0 60%,#d9eedb 60%);
-  display:flex;
-  align-items:end;
-  justify-content:center;
-  gap:12px;
-  padding-bottom:12px
-}
-.little-building {
-  height:60px;
-  width:47px;
-  background:#fff;
-  border:2px solid #b9c9df;
-  position:relative;
-  box-shadow:0 6px 0 #9db2d1
-}
-.little-building:before {
-  content:"";
-  position:absolute;
-  left:-5px;
-  top:-15px;
-  border-left:26px solid transparent;
-  border-right:26px solid transparent;
-  border-bottom:17px solid #7b94b7
-}
-.little-building i {
-  position:absolute;
-  left:17px;
-  bottom:0;
-  width:12px;
-  height:24px;
-  background:#dbeafe;
-  border:1px solid #b9c9df
-}
-.little-building span {
-  position:absolute;
-  right:5px;
-  top:14px;
-  width:10px;
-  height:10px;
-  background:#c7edf7
-}
-.blue-building {
-  height:76px;
-  background:#dbeafe
-}
-.blue-building:before {
-  border-bottom-color:#5e80b4
-}
-.game-action {
-  padding-top:12px;
-  font-weight:600
-}
-.preview-status {
-  position:absolute;
-  z-index:3;
-  bottom:17px;
-  left:22px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:var(--text-muted);
-  font-size:10px
-}
-.preview-status img {
-  width:6px;
-  height:6px
-}
+
 .home-hero-foot {
   display:flex;
   justify-content:space-between;
@@ -616,7 +525,8 @@ a:hover {
 }
 .featured-grid {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:minmax(0,min(100%,760px));
+  justify-content:center;
   gap:24px
 }
 .featured-product {
@@ -686,40 +596,7 @@ a:hover {
 .screen-row b {
   color:#2563eb
 }
-.works-art {
-  background:linear-gradient(180deg,#daf4fa 0 58%,#d8edda 58%)
-}
-.works-world {
-  display:flex;
-  align-items:end;
-  gap:18px;
-  transform:scale(1.45);
-  padding-bottom:38px
-}
-.works-label {
-  position:absolute;
-  left:22px;
-  bottom:17px;
-  display:flex;
-  gap:7px;
-  align-items:center;
-  color:#475569;
-  font-size:10px
-}
-.works-label img {
-  width:6px;
-  height:6px
-}
-.works-prompt {
-  position:absolute;
-  right:18px;
-  top:18px;
-  padding:8px 11px;
-  border-radius:8px;
-  background:#ffffffd9;
-  font-size:9px;
-  color:#0b1220
-}
+
 .featured-copy {
   padding:25px 27px 28px
 }
@@ -747,10 +624,7 @@ a:hover {
   max-width:470px;
   margin:0 0 18px
 }
-.preview-note {
-  font-size:11px;
-  color:var(--text-muted)
-}
+
 .approach-grid {
   display:grid;
   grid-template-columns:.8fr 1.2fr;
@@ -889,18 +763,12 @@ a:hover {
     gap:25px
   }
   .home-hero-art {
-    min-height:656px;
+    min-height:560px;
     padding:20px
   }
   .finance-preview {
-    top:50px;
-    left:5%;
-    width:68%;
+    width:min(calc(100% - 40px),520px);
     padding:17px
-  }
-  .game-preview {
-    right:3%;
-    width:53%
   }
   .approach-grid {
     gap:48px
@@ -922,15 +790,12 @@ a:hover {
     gap:34px
   }
   .home-hero-art {
-    min-height:656px
+    min-height:560px
   }
   .home-hero-copy {
     max-width:600px
   }
-  .featured-grid {
-    grid-template-columns:minmax(0,1fr);
-    gap:24px
-  }
+  .featured-grid {gap:24px}
 }
 @media(max-width:699px) {
   .container {
@@ -989,15 +854,12 @@ a:hover {
     justify-content:space-between
   }
   .home-hero-art {
-    min-height:740px;
+    min-height:560px;
     border-radius:18px;
     padding:16px
   }
   .finance-preview {
-    z-index:2;
-    top:33px;
-    left:5%;
-    width:74%;
+    width:min(calc(100% - 32px),520px);
     padding:14px
   }
   .preview-brand span {
@@ -1009,24 +871,6 @@ a:hover {
   }
   .preview-activity {
     gap:6px
-  }
-  .game-preview {
-    z-index:1;
-    bottom:40px;
-    right:3%;
-    width:56%;
-    padding:10px
-  }
-  .game-world {
-    height:83px;
-    margin:10px -10px 0
-  }
-  .little-building {
-    transform:scale(.82);
-    transform-origin:bottom
-  }
-  .game-action {
-    font-size:8px
   }
   .home-hero-foot {
     margin-top:28px;
@@ -1193,7 +1037,8 @@ a:hover {
 }
 .product-grid {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:minmax(0,min(100%,720px));
+  justify-content:center;
   align-items:stretch;
   gap:32px
 }
@@ -1391,14 +1236,11 @@ a:hover {
   background:var(--surface-raised)
 }
 .product-status img,
-.product-platform img,
-.neighborhood-toolbar img {
+.product-platform img {
   display:block;
   flex:none
 }
-.product-status--preview img {
-  opacity:.7
-}
+
 .product-card-title {
   margin:0;
   font-size:40px;
@@ -1423,89 +1265,7 @@ a:hover {
 .product-card-action img {
   display:block
 }
-.neighborhood-ui {
-  display:flex;
-  width:min(100%,480px);
-  height:100%;
-  flex-direction:column;
-  justify-content:center;
-  gap:12px;
-  padding:24px;
-  color:var(--text-primary)
-}
-.neighborhood-toolbar {
-  display:flex;
-  min-height:36px;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:0 12px;
-  border-radius:8px;
-  background:var(--surface);
-  font-size:11px;
-  font-weight:600
-}
-.neighborhood-toolbar span {
-  display:flex;
-  align-items:center;
-  gap:8px
-}
-.neighborhood-toolbar--bottom {
-  min-height:44px;
-  font-weight:500
-}
-.neighborhood-scene {
-  display:flex;
-  min-height:210px;
-  flex:1;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:18px;
-  border-radius:12px;
-  background:linear-gradient(180deg,var(--surface) 0 58%,var(--mint) 58% 100%)
-}
-.neighborhood-building {
-  position:relative;
-  display:flex;
-  width:30%;
-  max-width:120px;
-  height:122px;
-  align-items:end;
-  justify-content:center;
-  border:3px solid #b9c9df;
-  border-bottom-width:8px;
-  background:var(--surface)
-}
-.neighborhood-building::before {
-  position:absolute;
-  top:-15px;
-  left:-5px;
-  width:calc(100% + 10px);
-  height:0;
-  border-right:calc((100% + 10px)/2) solid transparent;
-  border-bottom:16px solid #7891b7;
-  border-left:calc((100% + 10px)/2) solid transparent;
-  content:""
-}
-.neighborhood-building i {
-  position:absolute;
-  top:35%;
-  right:12%;
-  width:16%;
-  aspect-ratio:1;
-  background:var(--brand-secondary)
-}
-.neighborhood-building span {
-  width:24%;
-  height:34%;
-  border:1px solid #b9c9df;
-  background:var(--surface-raised)
-}
-.neighborhood-building--blue {
-  height:144px;
-  background:var(--surface-raised)
-}
+
 .product-filter-empty {
   margin:24px 0 0;
   padding:24px;
@@ -1538,7 +1298,7 @@ a:hover {
 }
 .future-direction-grid {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:24px
 }
 .future-direction {
@@ -1866,7 +1626,6 @@ a:hover {
   .products-catalogue {
     padding-bottom:80px
   }
-  .product-grid,
   .future-direction-grid {
     grid-template-columns:minmax(0,1fr)
   }
@@ -1878,9 +1637,6 @@ a:hover {
   }
   .product-showcase-window {
     padding-top:16px
-  }
-  .product-showcase--smallworks {
-    height:420px
   }
   .product-card-title {
     font-size:36px
@@ -1936,9 +1692,6 @@ a:hover {
   }
   .product-showcase--finance {
     height:640px
-  }
-  .product-showcase--smallworks {
-    height:380px
   }
   .product-card-title {
     font-size:32px
@@ -2026,13 +1779,6 @@ a:hover {
   .finance-bars {
     height:56px;
     gap:6px
-  }
-  .neighborhood-ui {
-    padding:16px
-  }
-  .neighborhood-scene {
-    gap:7px;
-    padding:12px
   }
   .flooth-family .button {
     width:100%;
