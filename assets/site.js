@@ -91,4 +91,94 @@
   document.querySelectorAll('[data-year]').forEach((year) => {
     year.textContent = String(new Date().getFullYear());
   });
+  const lightbox = document.querySelector('[data-lightbox]');
+  if (lightbox) {
+    const screenshotTriggers = Array.from(document.querySelectorAll('[data-lightbox-trigger]'));
+    const lightboxImage = lightbox.querySelector('[data-lightbox-image]');
+    const lightboxTitle = lightbox.querySelector('[data-lightbox-title-output]');
+    const lightboxCaption = lightbox.querySelector('[data-lightbox-caption]');
+    const lightboxPosition = lightbox.querySelector('[data-lightbox-position]');
+    const previousButton = lightbox.querySelector('[data-lightbox-previous]');
+    const nextButton = lightbox.querySelector('[data-lightbox-next]');
+    const closeButton = lightbox.querySelector('[data-lightbox-close]');
+    let currentIndex = 0;
+    let returnFocus = null;
+    let pageScroll = null;
+
+    function showScreenshot(index) {
+      currentIndex = Math.max(0, Math.min(index, screenshotTriggers.length - 1));
+      const trigger = screenshotTriggers[currentIndex];
+      const sourceImage = trigger.querySelector('img');
+      const title = trigger.dataset.lightboxTitle || 'Flooth screenshot';
+      lightboxTitle.textContent = title;
+      lightboxCaption.textContent = 'Actual Flooth application screenshot · ' + title;
+      lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
+      lightboxImage.alt = sourceImage.alt;
+      lightboxPosition.textContent = (currentIndex + 1) + ' of ' + screenshotTriggers.length;
+      previousButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === screenshotTriggers.length - 1;
+    }
+
+    function openLightbox(trigger) {
+      const index = screenshotTriggers.indexOf(trigger);
+      if (index < 0 || lightbox.open) return;
+      returnFocus = trigger;
+      pageScroll = { x: window.scrollX, y: window.scrollY, body: document.body.style.overflow, root: root.style.overflow };
+      showScreenshot(index);
+      document.body.style.overflow = 'hidden';
+      root.style.overflow = 'hidden';
+      lightbox.showModal();
+      closeButton.focus({ preventScroll: true });
+    }
+
+    function restorePage() {
+      if (!pageScroll) return;
+      document.body.style.overflow = pageScroll.body;
+      root.style.overflow = pageScroll.root;
+      const position = pageScroll;
+      pageScroll = null;
+      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+      returnFocus = null;
+      window.scrollTo(position.x, position.y);
+    }
+
+    function closeLightbox() {
+      if (lightbox.open) lightbox.close();
+    }
+
+    screenshotTriggers.forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger)));
+    previousButton.addEventListener('click', () => showScreenshot(currentIndex - 1));
+    nextButton.addEventListener('click', () => showScreenshot(currentIndex + 1));
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('close', restorePage);
+    lightbox.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeLightbox();
+    });
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showScreenshot(currentIndex - 1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        showScreenshot(currentIndex + 1);
+      } else if (event.key === 'Tab') {
+        const focusable = Array.from(lightbox.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === lightbox)) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
 })();
