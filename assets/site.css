@@ -1106,7 +1106,19 @@ a:hover {
   font-size:13px;
   font-variant-numeric:tabular-nums
 }
+.featured-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px
+}
 @media(max-width:480px) {
+  .featured-actions {
+    align-items:stretch;
+    flex-direction:column
+  }
+  .featured-actions .button {
+    justify-content:center
+  }
   .flooth-lightbox {
     padding:8px
   }
@@ -2473,4 +2485,21 @@ a:hover {
   .flooth-hero-visual .flooth-dashboard {
     height:min(620px,calc(100vh - 150px))
   }
+}
+
+.product-status-link {
+  min-height:44px;
+  text-decoration:underline;
+  text-underline-offset:3px
+}
+.flooth-store-status {
+  min-height:48px;
+  border:0;
+  background:var(--brand-primary);
+  color:var(--text-on-brand);
+  text-decoration:none
+}
+.flooth-store-status:hover {
+  background:var(--teal-dark);
+  color:var(--text-on-brand)
 }
