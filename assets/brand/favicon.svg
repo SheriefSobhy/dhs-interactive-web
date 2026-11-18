@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Connected fold symbol" clip-path="url(#clip0_0_4)">
+<path id="Open possibility" d="M18.6656 0H32V13.3344L18.6656 0Z" fill="#22D3EE"/>
+<path id="Folded connection" fill-rule="evenodd" clip-rule="evenodd" d="M0 0H19.2L32 12.8V32H12.8L0 19.2V0ZM9.6 9.6V16L16 22.4H22.4V16L16 9.6H9.6Z" fill="#2563EB"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>
